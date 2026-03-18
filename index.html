@@ -9,45 +9,24 @@
     
     <style>
         :root { --gold: #f1c40f; --white: #ffffff; --blue: #1a2a6c; }
-
-        body {
-            margin: 0; font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            background-size: 400% 400%; animation: gradientBG 15s ease infinite;
-            color: white; display: flex; flex-direction: column; align-items: center;
-            overflow-x: hidden; min-height: 100vh;
-        }
-
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); background-size: 400% 400%; animation: gradientBG 15s ease infinite; color: white; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; min-height: 100vh; }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
         .container { max-width: 600px; width: 90%; text-align: center; padding: 40px 20px; z-index: 10; }
         h1 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; margin-bottom: 5px; }
-        .badge { background: var(--gold); color: black; padding: 5px 15px; border-radius: 20px; display: inline-block; font-weight: bold; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-
+        .badge { background: var(--gold); color: black; padding: 5px 15px; border-radius: 20px; display: inline-block; font-weight: bold; margin-bottom: 20px; }
         .progress-container { width: 100%; background: rgba(255,255,255,0.2); border-radius: 20px; margin: 20px 0; overflow: hidden; }
         .progress-bar { width: 0%; height: 10px; background: var(--gold); border-radius: 20px; transition: width 2s ease-in-out; }
-
         .card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 25px; margin-bottom: 25px; }
-
         .timeline { text-align: left; margin: 30px 0; border-left: 3px solid var(--gold); padding-left: 25px; }
         .timeline-item { margin-bottom: 20px; position: relative; font-size: 0.9rem; }
         .timeline-item::before { content: '⭐'; position: absolute; left: -38px; background: #fff; border-radius: 50%; width: 22px; height: 22px; display: flex; justify-content: center; align-items: center; font-size: 12px; }
-
         .btn-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
         .btn { background: var(--gold); color: var(--blue); border: none; padding: 15px 30px; font-weight: 800; border-radius: 50px; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .btn:hover { transform: scale(1.05); background: white; }
-
-        #cert-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 500px; background: white; color: #333; padding: 30px; border-radius: 15px; border: 10px double var(--gold); z-index: 2000; text-align: center; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
+        #cert-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 500px; background: white; color: #333; padding: 30px; border-radius: 15px; border: 8px double var(--gold); z-index: 2000; text-align: center; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
         #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1500; }
-
         .floating-photo { position: fixed; bottom: -150px; object-fit: cover; clip-path: path('M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.06 3.06 6.06 12 14.282 8.94-8.222 12-10.222 12-14.282 0-8.165-10.011-8.967-12-3.568z'); border: 4px solid white; z-index: 100; animation: floatUp 5s linear forwards; }
         @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(-130vh) rotate(25deg); opacity: 0; } }
-
-        #party-msg { 
-            display: none; font-size: 1.4rem; color: var(--gold); font-weight: 800; margin-top: 20px; 
-            min-height: 60px; /* Message badalne par layout hilne se rokne ke liye */
-            animation: fadeIn 0.5s;
-        }
+        #party-msg { display: none; font-size: 1.4rem; color: var(--gold); font-weight: 800; margin-top: 20px; min-height: 60px; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
@@ -66,7 +45,7 @@
 
         <div class="card">
             <h2 style="color: var(--gold); margin: 0;">RRB Clerk Selection 2026</h2>
-            <p>"Yeh sirf ek job nahi, yeh tumhari mehnat ka result hai." ❤️</p>
+            <p>"Yeh tumhari mehnat ka result hai." ❤️</p>
         </div>
 
         <div class="timeline">
@@ -84,122 +63,62 @@
     </div>
 
     <div id="cert-modal">
-        <h3 style="font-family: 'Dancing Script'; font-size: 2rem; color: var(--blue);">Official Achievement</h3>
-        <hr>
-        <p>This certifies that</p>
-        <h2 id="cert-name" style="color: #b21f1f; text-transform: uppercase;">Vandana</h2>
-        <p>has successfully cleared the</p>
-        <h3 style="color: var(--blue);">RRB CLERK EXAMINATION 2026</h3>
-        <p>with flying colors!</p>
-        <button class="btn" onclick="closeCert()">Close</button>
+        <h3 style="font-family: 'Dancing Script'; font-size: 2rem; color: #1a2a6c; margin:0;">Celebrating Your Achievement ✨</h3>
+        <p style="margin: 10px 0;">This is to proudly certify that</p>
+        <h1 style="color: #b21f1f; margin: 5px 0; font-family: 'Poppins';">VANDANA</h1>
+        <p style="margin: 5px 0;">has successfully cleared the</p>
+        <h2 style="color: #1a2a6c; margin: 5px 0;">RRB CLERK EXAMINATION 2026</h2>
+        <p style="font-style: italic; font-size: 0.9rem;">through dedication, consistency, and determination.</p>
+        <h4 style="color: #b21f1f; margin-top: 15px;">We are incredibly proud of you ❤️</h4>
+        <button class="btn" onclick="closeCert()" style="margin-top: 10px;">Close</button>
     </div>
 
     <script>
         const name = "Vandana"; 
         const funMsgs = [
-            "Party kab de rahi ho? 😄",
-            "Ab treat banti hai 😎",
-            "Banker ho gayi ho, ab toh rich ho 😂",
-            "Salary aate hi yaad aaunga kya 😌💸",
-            "Ab toh ghar wale bhi sunenge tumhari 😎",
-            "Ab rishton ki line lagne wali hai 😂",
-            "Form bharne se leke selection tak… legend ho tum 🔥",
-            "Ab toh loan bhi approve kara dogi na? 😏",
-            "Ab toh ATM bhi tumhe salute karega 😄",
-            "Study mode → Success mode ON ✅",
-            "Finally padhai ka kuch use hua 😂",
-            "Mock test wale din yaad hai? 😭",
-            "Ab tension free ya next exam ready? 👀",
-            "Ab neend puri kar lo… deserve karti ho 😴",
-            "Ab Sunday bhi special ho gaya 😄",
-            "Clerk today… Officer tomorrow 🔥",
-            "Proud moment hai… but party bhi zaroori hai 😄",
-            "Itni mehnat ke baad treat toh banti hai 💖",
-            "Tum jeeti… ab ham khayenge 🍕😂",
-            "Success tumhari… celebration hamara 😎",
-            "Khushi double tab hogi jab pizza aayega 🍕",
-            "Yeh toh bas shuruaat hai 💯",
-            "Next target: Promotion 📈",
-            "Ab mummy ka favourite officially tum ho 😂",
-            "Ab relatives ka favourite question: ‘kitni salary?’ 😭",
-            "Ab form fill karne wale tumse advice lenge 😄",
-            "Ab tension nahi… sirf transaction 😎",
-            "Ab struggle story reel ban sakti hai 🎬",
-            "Ab asli sawaal: party kab? 😏",
-            "Success ke saath pizza free milta hai na? 🍕😂",
-            "Hard work ka result… aur hamari bhookh ka solution 😄",
-            "Next Goal Loading... 🚀"
+            "Party kab de rahi ho? 😄", "Ab treat banti hai 😎", "Banker ho gayi ho, ab toh rich ho 😂", "Salary aate hi yaad aaunga kya 😌💸",
+            "Ab toh ghar wale bhi sunenge tumhari 😎", "Ab rishton ki line lagne wali hai 😂", "Form bharne se leke selection tak… legend ho tum 🔥",
+            "Ab toh loan bhi approve kara dogi na? 😏", "Ab toh ATM bhi tumhe salute karega 😄", "Study mode → Success mode ON ✅",
+            "Finally padhai ka kuch use hua 😂", "Mock test wale din yaad hai? 😭", "Ab tension free ya next exam ready? 👀",
+            "Ab neend puri kar lo… deserve karti ho 😴", "Ab Sunday bhi special ho gaya 😄", "Clerk today… Officer tomorrow 🔥",
+            "Proud moment hai… but party bhi zaroori hai 😄", "Itni mehnat ke baad treat toh banti hai 💖", "Tum jeeti… ab ham khayenge 🍕😂",
+            "Success tumhari… celebration hamara 😎", "Khushi double tab hogi jab pizza aayega 🍕", "Yeh toh bas shuruaat hai 💯",
+            "Next target: Promotion 📈", "Ab mummy ka favourite officially tum ho 😂", "Ab relatives ka favourite question: ‘kitni salary?’ 😭",
+            "Ab form fill karne wale tumse advice lenge 😄", "Ab tension nahi… sirf transaction 😎", "Ab struggle story reel ban sakti hai 🎬",
+            "Ab asli sawaal: party kab? 😏", "Success ke saath pizza free milta hai na? 🍕😂", "Hard work ka result… aur hamari bhookh ka solution 😄", "Next Goal Loading... 🚀"
         ];
 
         let msgInterval;
 
-       // Is naye code ko copy karein aur delete kiye hue part ki jagah paste kar dein
-function initPage() {
-    // 1. Name and Certificate Update
-    document.getElementById('main-title').innerText = `Congratulations ${name}! 🎉`;
-    document.getElementById('cert-name').innerText = name;
-    
-    // 2. Progress Bar Fill
-    setTimeout(() => {
-        document.getElementById('myBar').style.width = "100%";
-    }, 500);
+        function initPage() {
+            document.getElementById('main-title').innerText = `Congratulations ${name}! 🎉`;
+            setTimeout(() => { document.getElementById('myBar').style.width = "100%"; }, 500);
+            
+            // MASSIVE INITIAL CELEBRATION
+            confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 }, scalar: 1.2 });
+            setTimeout(() => { confetti({ particleCount: 100, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff0000', '#ffd700'] }); }, 200);
+            setTimeout(() => { confetti({ particleCount: 100, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ffffff', '#ffd700'] }); }, 400);
+            let c = 0; let iL = setInterval(() => { launchRocket(Math.random()); c++; if(c>5) clearInterval(iL); }, 300);
+        }
 
-    // 3. MASSIVE INITIAL CELEBRATION (Yahan extra rockets add kiye hain)
-    // Pehla bada burst beech mein
-    confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 }, scalar: 1.2 });
-
-    // Left side se rockets
-    setTimeout(() => {
-        confetti({ particleCount: 100, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff0000', '#ffd700'] });
-    }, 200);
-
-    // Right side se rockets
-    setTimeout(() => {
-        confetti({ particleCount: 100, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ffffff', '#ffd700'] });
-    }, 400);
-
-    // Niche se upar aate hue random patake (Solitaire Style)
-    let count = 0;
-    let initialLaunch = setInterval(() => {
-        launchRocket(Math.random());
-        count++;
-        if(count > 5) clearInterval(initialLaunch); // 5 extra rockets shuru mein hi
-    }, 300);
-}
         function updateMessage() {
             const msgElement = document.getElementById('party-msg');
             msgElement.style.display = 'block';
-            // Random message pick
-            const randomMsg = funMsgs[Math.floor(Math.random() * funMsgs.length)];
-            msgElement.innerText = randomMsg;
+            msgElement.innerText = funMsgs[Math.floor(Math.random() * funMsgs.length)];
         }
 
         function megaCelebration() {
-            // Sound play
             let audio = new Audio("https://www.soundjay.com/human/applause-8.mp3");
-            audio.play().catch(e => console.log("Audio needs user click"));
-
-            // Initial message change
+            audio.play().catch(e => console.log("Audio needs user interaction"));
             updateMessage();
-
-            // Setup Auto-Change every 2 seconds if not already running
-            if (!msgInterval) {
-                msgInterval = setInterval(updateMessage, 2000);
-            }
-
-            // Solitaire Rockets
-            var duration = 15 * 1000;
-            var animationEnd = Date.now() + duration;
+            if (!msgInterval) { msgInterval = setInterval(updateMessage, 2000); }
+            var duration = 15 * 1000; var animationEnd = Date.now() + duration;
             var interval = setInterval(function() {
                 var timeLeft = animationEnd - Date.now();
                 if (timeLeft <= 0) return clearInterval(interval);
                 launchRocket(Math.random());
             }, 800);
-
-            // Floating Heart Photos
-            for (let i = 1; i <= 20; i++) {
-                setTimeout(() => { createHeartPhoto(i); }, i * 400); 
-            }
+            for (let i = 1; i <= 20; i++) { setTimeout(() => { createHeartPhoto(i); }, i * 400); }
         }
 
         function launchRocket(xPos) {
@@ -217,15 +136,8 @@ function initPage() {
             setTimeout(() => { img.remove(); }, 6000);
         }
 
-        function showCert() {
-            document.getElementById('cert-modal').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-        }
-
-        function closeCert() {
-            document.getElementById('cert-modal').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
+        function showCert() { document.getElementById('cert-modal').style.display = 'block'; document.getElementById('overlay').style.display = 'block'; }
+        function closeCert() { document.getElementById('cert-modal').style.display = 'none'; document.getElementById('overlay').style.display = 'none'; }
     </script>
 </body>
 </html>
