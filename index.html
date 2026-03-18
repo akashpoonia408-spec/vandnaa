@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations Didi! | RRB Clerk Selection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-blue: #1a2a6c;
+            --gold: #f1c40f;
+            --soft-white: #f8f9fa;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--soft-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section */
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        /* Achievement Card */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        .badge {
+            background: var(--gold);
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        /* Timeline Section */
+        .timeline {
+            text-align: left;
+            margin: 40px 0;
+            border-left: 2px solid var(--gold);
+            padding-left: 20px;
+        }
+
+        .timeline-item {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '✓';
+            position: absolute;
+            left: -31px;
+            background: var(--gold);
+            color: black;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Buttons & Surprise */
+        .btn {
+            background: var(--gold);
+            color: #1a2a6c;
+            border: none;
+            padding: 15px 30px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(241, 196, 15, 0.4);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #fff;
+        }
+
+        #party-msg {
+            margin-top: 20px;
+            font-weight: 600;
+            color: var(--gold);
+            display: none;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body onload="celebrate()">
+
+    <div class="container">
+        <div class="hero">
+            <h1>Congratulations Didi! 🎉</h1>
+            <p class="subtitle">Hard work finally paid off ✨</p>
+        </div>
+
+        <div class="card">
+            <span class="badge">Verified Selection</span>
+            <h2 style="margin: 15px 0;">RRB Clerk Selection 2026</h2>
+            <p style="font-style: italic;">"From Dreams → Reality"</p>
+            <p>The newest Banker in the family! 🏦</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <strong>Phase 1:</strong> The Big Dreams & Books
+            </div>
+            <div class="timeline-item">
+                <strong>Phase 2:</strong> Late Night Mocks & Struggles
+            </div>
+            <div class="timeline-item">
+                <strong>Phase 3:</strong> Exam Day Nerves
+            </div>
+            <div class="timeline-item" style="color: var(--gold);">
+                <strong>Final:</strong> RRB Clerk Selected! 🏆
+            </div>
+        </div>
+
+        <div class="card">
+            <p>"Tumne sabko proud feel karaya hai. Tumhari mehnat ye prove karti hai ki sapne sach hote hain. Keep shining!" ❤️</p>
+        </div>
+
+        <button class="btn" onclick="showSurprise()">Click for Surprise!</button>
+        <p id="party-msg">Party kab de rahi ho fir? 😄🍕</p>
+
+    </div>
+
+    <script>
+        // Automatic Celebration on Load
+        function celebrate() {
+            var duration = 5 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
+        // Surprise Message Logic
+        function showSurprise() {
+            document.getElementById('party-msg').style.display = 'block';
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+    </script>
+</body>
+</html>
