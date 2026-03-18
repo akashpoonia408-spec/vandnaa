@@ -18,30 +18,25 @@
         
         .badge { background: var(--gold); color: black; padding: 5px 15px; border-radius: 20px; display: inline-block; font-weight: bold; margin-bottom: 20px; }
         
-        /* Progress Bar Upgrade */
         .progress-container { width: 100%; background: rgba(255,255,255,0.2); border-radius: 20px; margin: 20px 0; overflow: hidden; }
         .progress-bar { width: 0%; height: 10px; background: var(--gold); border-radius: 20px; }
 
-        .card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 25px; margin-bottom: 25px; transition: 0.3s; }
+        .card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 25px; margin-bottom: 25px; }
         
         .timeline { text-align: left; margin: 30px 0; border-left: 3px solid var(--gold); padding-left: 25px; }
         .timeline-item { margin-bottom: 20px; position: relative; font-size: 0.9rem; }
         .timeline-item::before { content: '⭐'; position: absolute; left: -38px; background: #fff; border-radius: 50%; width: 22px; height: 22px; display: flex; justify-content: center; align-items: center; font-size: 12px; }
 
         .btn { background: var(--gold); color: var(--blue); border: none; padding: 15px 30px; font-weight: 800; border-radius: 50px; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .btn:active { transform: scale(0.95); } /* Button Click Feel */
+        .btn:active { transform: scale(0.95); }
 
-        /* Premium Certificate Modal Animation */
         #cert-modal { 
             display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
             width: 90%; max-width: 500px; background: white; color: #333; padding: 30px; 
             border-radius: 15px; border: 8px double var(--gold); z-index: 2000; text-align: center;
             animation: popCert 0.4s ease forwards;
         }
-        @keyframes popCert {
-            from { transform: translate(-50%, -60%) scale(0.8); opacity: 0; }
-            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        }
+        @keyframes popCert { from { transform: translate(-50%, -60%) scale(0.8); opacity: 0; } to { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
 
         #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1500; }
         
@@ -92,7 +87,7 @@
     <div id="cert-modal">
         <h3 style="font-family: 'Dancing Script'; font-size: 1.8rem; color: #1a2a6c; margin:0;">Celebrating Your Achievement ✨</h3>
         <p style="margin: 10px 0;">This is to proudly certify that</p>
-        <h1 style="color: #b21f1f; margin: 5px 0; font-family: 'Poppins';">VANDANA</h1>
+        <h1 style="color: #b21f1f; margin: 5px 0; font-family: 'Poppins'; uppercase;">VANDANA</h1>
         <p style="margin: 5px 0;">has successfully cleared the</p>
         <h2 style="color: #1a2a6c; margin: 5px 0;">RRB CLERK EXAMINATION 2026</h2>
         <p style="font-style: italic; font-size: 0.9rem;">through dedication, consistency, and determination.</p>
@@ -103,6 +98,8 @@
     <script>
         const name = "Vandana"; 
         const typingMsg = "Hard work always wins… and today, you proved it.";
+        
+        // ALL FUN MESSAGES COMBINED (OLD + NEW)
         const funMsgs = [
             "Party kab de rahi ho? 😄", "Ab treat banti hai 😎", "Banker ho gayi ho, ab toh rich ho 😂", "Salary aate hi yaad aaunga kya 😌💸",
             "Ab toh ghar wale bhi sunenge tumhari 😎", "Ab rishton ki line lagne wali hai 😂", "Form bharne se leke selection tak… legend ho tum 🔥",
@@ -113,7 +110,14 @@
             "Success tumhari… celebration hamara 😎", "Khushi double tab hogi jab pizza aayega 🍕", "Yeh toh bas shuruaat hai 💯",
             "Next target: Promotion 📈", "Ab mummy ka favourite officially tum ho 😂", "Ab relatives ka favourite question: ‘kitni salary?’ 😭",
             "Ab form fill karne wale tumse advice lenge 😄", "Ab tension nahi… sirf transaction 😎", "Ab struggle story reel ban sakti hai 🎬",
-            "Ab asli sawaal: party kab? 😏", "Success ke saath pizza free milta hai na? 🍕😂", "Hard work ka result… aur hamari bhookh ka solution 😄"
+            "Ab asli sawaal: party kab? 😏", "Success ke saath pizza free milta hai na? 🍕😂", "Hard work ka result… aur hamari bhookh ka solution 😄",
+            "Ab toh chai bhi ‘bank wali chai’ ho gayi ☕😂", "Tumhari signature ki value badh gayi hai 😎", 
+            "Ab se tum line me nahi… log tumhari line me lagenge 😏", "Ab tumhari life me debit-credit hi chalne wala hai 😂",
+            "Ab tumhara ‘busy hoon’ legit reason ban gaya 😄", "Ab ghar me financial advisor officially tum ho 📊",
+            "Ab toh EMI bhi tumse dar ke time pe aayegi 😂", "Ab mummy bolegi: isse seekho kuch 😭",
+            "Ab tumhari ek ‘haan’ pe loan pass ho jayega kya? 😄", "Ab tumhari life me interest hi interest hai 📈😂",
+            "Ab tumhari life me ‘pending’ sirf files hongi 😂", "Ab tumhara mood bhi RBI ke rules pe chalega 😎",
+            "Ab tumhara ‘kal se padhungi’ officially retire ho gaya 😄", "Ab tumhara ‘haan’ aur ‘na’ dono powerful ho gaye 😄"
         ];
 
         let msgInterval;
@@ -122,26 +126,16 @@
         function initPage() {
             document.getElementById('main-title').innerText = `Congratulations ${name}! 🎉`;
             
-            // 1. Smooth Typing Effect
+            // 1. Typing Effect
             let i = 0;
-            function type() {
-                if (i < typingMsg.length) {
-                    document.getElementById("typing-text").innerHTML += typingMsg.charAt(i);
-                    i++;
-                    setTimeout(type, 50);
-                }
-            }
+            function type() { if (i < typingMsg.length) { document.getElementById("typing-text").innerHTML += typingMsg.charAt(i); i++; setTimeout(type, 50); } }
             type();
 
             // 2. Realistic Progress Bar
-            let width = 0;
-            let bar = document.getElementById("myBar");
-            let progressInterval = setInterval(() => {
-                if (width >= 100) clearInterval(progressInterval);
-                else { width++; bar.style.width = width + "%"; }
-            }, 20);
+            let width = 0; let bar = document.getElementById("myBar");
+            let pInt = setInterval(() => { if (width >= 100) clearInterval(pInt); else { width++; bar.style.width = width + "%"; } }, 20);
 
-            // 3. Optimized Initial Celebration
+            // 3. Initial Celebration
             confetti({ particleCount: 120, spread: 100, origin: { y: 0.6 }, scalar: 1.1 });
             setTimeout(() => { confetti({ particleCount: 80, angle: 60, spread: 55, origin: { x: 0 } }); }, 200);
             setTimeout(() => { confetti({ particleCount: 80, angle: 120, spread: 55, origin: { x: 1 } }); }, 400);
@@ -150,33 +144,25 @@
         function updateMessage() {
             const msgElement = document.getElementById('party-msg');
             msgElement.style.display = 'block';
-            let newIndex;
-            do {
-                newIndex = Math.floor(Math.random() * funMsgs.length);
-            } while (newIndex === lastIndex);
-            lastIndex = newIndex;
-            msgElement.innerText = funMsgs[newIndex];
+            let nI; do { nI = Math.floor(Math.random() * funMsgs.length); } while (nI === lastIndex);
+            lastIndex = nI; msgElement.innerText = funMsgs[nI];
         }
 
         function megaCelebration() {
             let audio = new Audio("https://www.soundjay.com/human/applause-8.mp3");
-            audio.play().catch(e => console.log("Audio needs interaction"));
+            audio.play().catch(e => {});
             updateMessage();
             if (!msgInterval) { msgInterval = setInterval(updateMessage, 2000); }
-            
             var duration = 15 * 1000; var animationEnd = Date.now() + duration;
             var interval = setInterval(function() {
                 var timeLeft = animationEnd - Date.now();
                 if (timeLeft <= 0) return clearInterval(interval);
                 launchRocket(Math.random());
             }, 800);
-
             for (let i = 1; i <= 20; i++) { setTimeout(() => { createHeartPhoto(i); }, i * 400); }
         }
 
-        function launchRocket(xPos) {
-            confetti({ particleCount: 80, angle: 90, spread: 50, origin: { x: xPos, y: 0.9 }, startVelocity: 45, gravity: 1.2 });
-        }
+        function launchRocket(xPos) { confetti({ particleCount: 80, angle: 90, spread: 50, origin: { x: xPos, y: 0.9 }, startVelocity: 45, gravity: 1.2 }); }
 
         function createHeartPhoto(index) {
             const img = document.createElement('img');
@@ -187,14 +173,8 @@
             setTimeout(() => { img.remove(); }, 6000);
         }
 
-        function showCert() { 
-            document.getElementById('cert-modal').style.display = 'block'; 
-            document.getElementById('overlay').style.display = 'block'; 
-        }
-        function closeCert() { 
-            document.getElementById('cert-modal').style.display = 'none'; 
-            document.getElementById('overlay').style.display = 'none'; 
-        }
+        function showCert() { document.getElementById('cert-modal').style.display = 'block'; document.getElementById('overlay').style.display = 'block'; }
+        function closeCert() { document.getElementById('cert-modal').style.display = 'none'; document.getElementById('overlay').style.display = 'none'; }
     </script>
 </body>
 </html>
