@@ -133,16 +133,39 @@
 
         let msgInterval;
 
-        function initPage() {
-            document.getElementById('main-title').innerText = `Congratulations ${name}! 🎉`;
-            document.getElementById('cert-name').innerText = name;
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-            
-            setTimeout(() => {
-                document.getElementById('myBar').style.width = "100%";
-            }, 500);
-        }
+       // Is naye code ko copy karein aur delete kiye hue part ki jagah paste kar dein
+function initPage() {
+    // 1. Name and Certificate Update
+    document.getElementById('main-title').innerText = `Congratulations ${name}! 🎉`;
+    document.getElementById('cert-name').innerText = name;
+    
+    // 2. Progress Bar Fill
+    setTimeout(() => {
+        document.getElementById('myBar').style.width = "100%";
+    }, 500);
 
+    // 3. MASSIVE INITIAL CELEBRATION (Yahan extra rockets add kiye hain)
+    // Pehla bada burst beech mein
+    confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 }, scalar: 1.2 });
+
+    // Left side se rockets
+    setTimeout(() => {
+        confetti({ particleCount: 100, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff0000', '#ffd700'] });
+    }, 200);
+
+    // Right side se rockets
+    setTimeout(() => {
+        confetti({ particleCount: 100, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ffffff', '#ffd700'] });
+    }, 400);
+
+    // Niche se upar aate hue random patake (Solitaire Style)
+    let count = 0;
+    let initialLaunch = setInterval(() => {
+        launchRocket(Math.random());
+        count++;
+        if(count > 5) clearInterval(initialLaunch); // 5 extra rockets shuru mein hi
+    }, 300);
+}
         function updateMessage() {
             const msgElement = document.getElementById('party-msg');
             msgElement.style.display = 'block';
