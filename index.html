@@ -4,142 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Congratulations Didi! | RRB Clerk 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <style>
-        :root {
-            --gold: #f1c40f;
-            --white: #ffffff;
-        }
+        :root { --gold: #f1c40f; --white: #ffffff; }
 
         body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
+            margin: 0; font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-            min-height: 100vh;
+            color: white; display: flex; flex-direction: column;
+            align-items: center; overflow-x: hidden; min-height: 100vh;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        .container {
-            max-width: 600px;
-            width: 90%;
-            text-align: center;
-            padding: 40px 20px;
-            z-index: 10;
-        }
-
+        .container { max-width: 600px; width: 90%; text-align: center; padding: 40px 20px; z-index: 10; }
         h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin-bottom: 5px; }
-        .subtitle { letter-spacing: 2px; margin-bottom: 30px; opacity: 0.9; }
+        .card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
-        /* Achievement Card */
-        .card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        /* Timeline */
-        .timeline {
-            text-align: left;
-            margin: 30px 0;
-            border-left: 3px solid var(--gold);
-            padding-left: 25px;
-        }
+        .timeline { text-align: left; margin: 30px 0; border-left: 3px solid var(--gold); padding-left: 25px; }
         .timeline-item { margin-bottom: 20px; position: relative; font-size: 0.95rem; }
-        .timeline-item::before {
-            content: '⭐';
-            position: absolute;
-            left: -38px;
-            background: #fff;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-        }
+        .timeline-item::before { content: '⭐'; position: absolute; left: -38px; background: #fff; border-radius: 50%; width: 22px; height: 22px; display: flex; justify-content: center; align-items: center; font-size: 12px; }
 
-        /* Photo & Surprise Button */
-        .btn {
-            background: var(--gold);
-            color: #1a2a6c;
-            border: none;
-            padding: 18px 40px;
-            font-weight: 800;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: 0.4s;
-            box-shadow: 0 0 20px rgba(241, 196, 15, 0.6);
-            margin: 20px 0;
-        }
+        .btn { background: var(--gold); color: #1a2a6c; border: none; padding: 18px 40px; font-weight: 800; border-radius: 50px; cursor: pointer; font-size: 1.1rem; transition: 0.4s; box-shadow: 0 0 20px rgba(241, 196, 15, 0.6); margin: 20px 0; position: relative; z-index: 1000; }
         .btn:hover { transform: scale(1.1); background: #fff; }
 
         .floating-photo {
-            position: fixed;
-            bottom: -150px;
-            object-fit: cover;
+            position: fixed; bottom: -150px; object-fit: cover;
             clip-path: path('M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.06 3.06 6.06 12 14.282 8.94-8.222 12-10.222 12-14.282 0-8.165-10.011-8.967-12-3.568z');
-            border: 4px solid white;
-            z-index: 100;
-            animation: floatUp 5s linear forwards;
+            border: 4px solid white; z-index: 100; animation: floatUp 5s linear forwards;
         }
 
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-130vh) rotate(25deg); opacity: 0; }
-        }
+        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-130vh) rotate(25deg); opacity: 0; } }
 
-        #party-msg {
-            display: none;
-            font-size: 1.8rem;
-            color: var(--gold);
-            font-weight: 800;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            margin-top: 20px;
-        }
+        #party-msg { display: none; font-size: 1.8rem; color: var(--gold); font-weight: 800; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-top: 20px; }
     </style>
 </head>
 <body onload="startConfetti()">
 
     <div class="container">
         <h1>Congratulations Didi! 🎉</h1>
-        <p class="subtitle">THE JOURNEY FROM DREAM TO REALITY</p>
+        <p>THE JOURNEY FROM DREAM TO REALITY ✨</p>
 
         <div class="card">
             <h2 style="color: var(--gold); margin: 0;">RRB Clerk Selection 2026</h2>
-            <p>Our Official Banker! 🏦✨</p>
+            <p>Official Banker in the Family! 🏦</p>
         </div>
 
         <div class="timeline">
-            <div class="timeline-item"><strong>The Beginning:</strong> Books, Syllabus & Big Dreams.</div>
-            <div class="timeline-item"><strong>The Struggle:</strong> Sleepless nights & countless mocks.</div>
-            <div class="timeline-item"><strong>Exam Day:</strong> Nerves of steel & hard work.</div>
-            <div class="timeline-item" style="color: var(--gold);"><strong>Today:</strong> Finally, You Did It! 🏆</div>
+            <div class="timeline-item"><strong>The Beginning:</strong> Hard work & Big Dreams.</div>
+            <div class="timeline-item"><strong>The Struggle:</strong> Sleepless nights & Mocks.</div>
+            <div class="timeline-item"><strong>The Result:</strong> RRB Clerk Selected! 🏆</div>
         </div>
 
         <div class="card" style="font-style: italic;">
-            "Tumne prove kar diya ki mehnat kabhi bekar nahi jati. We are so proud of you!" ❤️
+            "Your success is the result of your consistency. So proud of you!" ❤️
         </div>
 
         <button class="btn" onclick="megaCelebration()">CLICK FOR SURPRISE! 🎆</button>
@@ -147,50 +69,57 @@
     </div>
 
     <script>
-        // 1. Initial Soft Confetti
         function startConfetti() {
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         }
 
-        // 2. Mega Celebration: Fireworks + Floating Hearts
         function megaCelebration() {
             document.getElementById('party-msg').style.display = 'block';
             
-            // FIREWORKS EFFECT
+            // 1. SOLITAIRE STYLE ROCKET FIREWORKS
             var duration = 15 * 1000;
             var animationEnd = Date.now() + duration;
-            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
             var interval = setInterval(function() {
                 var timeLeft = animationEnd - Date.now();
                 if (timeLeft <= 0) return clearInterval(interval);
 
-                var particleCount = 50 * (timeLeft / duration);
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 } }));
-            }, 250);
+                // Launching 3 rockets at a time from different bottom positions
+                launchRocket(0.2);
+                launchRocket(0.5);
+                launchRocket(0.8);
+            }, 800);
 
-            // FLOATING HEART PHOTOS (p1 to p20)
+            // 2. FLOATING HEART PHOTOS
             for (let i = 1; i <= 20; i++) {
-                setTimeout(() => {
-                    createHeartPhoto(i);
-                }, i * 400); 
+                setTimeout(() => { createHeartPhoto(i); }, i * 400); 
             }
+        }
+
+        function launchRocket(xPos) {
+            // Rocket burst effect using confetti library to mimic fireworks
+            confetti({
+                particleCount: 80,
+                angle: 90,
+                spread: 50,
+                origin: { x: xPos, y: 0.9 }, // Starts from bottom
+                startVelocity: 45, // Shoots up like a rocket
+                gravity: 1.2,
+                drift: 0,
+                ticks: 200,
+                colors: ['#ff0000', '#ffd700', '#ffffff', '#ff69b4', '#00ff00']
+            });
         }
 
         function createHeartPhoto(index) {
             const img = document.createElement('img');
             img.src = `p${index}.jpeg`; 
             img.className = 'floating-photo';
-            
-            // Random horizontal position and size
             img.style.left = (Math.random() * 80 + 5) + 'vw';
             const size = Math.random() * 40 + 90; 
             img.style.width = size + 'px';
             img.style.height = (size + 10) + 'px';
-
             document.body.appendChild(img);
-
-            // Remove after animation to save memory
             setTimeout(() => { img.remove(); }, 6000);
         }
     </script>
