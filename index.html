@@ -3,112 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Congratulations Didi! | RRB Clerk 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <title>Congratulations | RRB Clerk 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <style>
-        :root { --gold: #f1c40f; --white: #ffffff; }
+        :root { --gold: #f1c40f; --white: #ffffff; --blue: #1a2a6c; }
 
         body {
             margin: 0; font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: white; display: flex; flex-direction: column;
-            align-items: center; overflow-x: hidden; min-height: 100vh;
+            background-size: 400% 400%; animation: gradientBG 15s ease infinite;
+            color: white; display: flex; flex-direction: column; align-items: center;
+            overflow-x: hidden; min-height: 100vh;
         }
 
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
         .container { max-width: 600px; width: 90%; text-align: center; padding: 40px 20px; z-index: 10; }
-        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin-bottom: 5px; }
-        .card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        
+        /* Typography & Mobile Fix */
+        h1 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; margin-bottom: 5px; }
+        .badge { background: var(--gold); color: black; padding: 5px 15px; border-radius: 20px; display: inline-block; font-weight: bold; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+        /* Progress Bar */
+        .progress-container { width: 100%; background: rgba(255,255,255,0.2); border-radius: 20px; margin: 20px 0; overflow: hidden; }
+        .progress-bar { width: 0%; height: 10px; background: var(--gold); border-radius: 20px; transition: width 2s ease-in-out; }
+
+        .card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 25px; margin-bottom: 25px; }
 
         .timeline { text-align: left; margin: 30px 0; border-left: 3px solid var(--gold); padding-left: 25px; }
-        .timeline-item { margin-bottom: 20px; position: relative; font-size: 0.95rem; }
+        .timeline-item { margin-bottom: 20px; position: relative; font-size: 0.9rem; }
         .timeline-item::before { content: '⭐'; position: absolute; left: -38px; background: #fff; border-radius: 50%; width: 22px; height: 22px; display: flex; justify-content: center; align-items: center; font-size: 12px; }
 
-        .btn { background: var(--gold); color: #1a2a6c; border: none; padding: 18px 40px; font-weight: 800; border-radius: 50px; cursor: pointer; font-size: 1.1rem; transition: 0.4s; box-shadow: 0 0 20px rgba(241, 196, 15, 0.6); margin: 20px 0; position: relative; z-index: 1000; }
-        .btn:hover { transform: scale(1.1); background: #fff; }
+        /* Buttons */
+        .btn-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .btn { background: var(--gold); color: var(--blue); border: none; padding: 15px 30px; font-weight: 800; border-radius: 50px; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .btn:hover { transform: scale(1.05); background: white; }
 
-        .floating-photo {
-            position: fixed; bottom: -150px; object-fit: cover;
-            clip-path: path('M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.06 3.06 6.06 12 14.282 8.94-8.222 12-10.222 12-14.282 0-8.165-10.011-8.967-12-3.568z');
-            border: 4px solid white; z-index: 100; animation: floatUp 5s linear forwards;
-        }
+        /* Certificate Modal */
+        #cert-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 500px; background: white; color: #333; padding: 30px; border-radius: 15px; border: 10px double var(--gold); z-index: 2000; text-align: center; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
+        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1500; }
 
-        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-130vh) rotate(25deg); opacity: 0; } }
+        /* Heart Photos */
+        .floating-photo { position: fixed; bottom: -150px; object-fit: cover; clip-path: path('M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.06 3.06 6.06 12 14.282 8.94-8.222 12-10.222 12-14.282 0-8.165-10.011-8.967-12-3.568z'); border: 4px solid white; z-index: 100; animation: floatUp 5s linear forwards; }
+        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(-130vh) rotate(25deg); opacity: 0; } }
 
-        #party-msg { display: none; font-size: 1.8rem; color: var(--gold); font-weight: 800; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-top: 20px; }
+        #party-msg { display: none; font-size: 1.4rem; color: var(--gold); font-weight: 800; margin-top: 20px; }
     </style>
 </head>
-<body onload="startConfetti()">
+<body onload="initPage()">
+
+    <div id="overlay" onclick="closeCert()"></div>
 
     <div class="container">
-        <h1>Congratulations Didi! 🎉</h1>
-        <p>THE JOURNEY FROM DREAM TO REALITY ✨</p>
+        <div class="badge">🏅 Proud Banker</div>
+        <h1 id="main-title">Congratulations! 🎉</h1>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="myBar"></div>
+        </div>
+        <p style="font-size: 0.8rem; margin-top: -15px;">Dream → Completed 100%</p>
 
         <div class="card">
             <h2 style="color: var(--gold); margin: 0;">RRB Clerk Selection 2026</h2>
-            <p>Official Banker in the Family! 🏦</p>
+            <p>"Yeh sirf ek job nahi, yeh tumhari mehnat ka result hai." ❤️</p>
         </div>
 
         <div class="timeline">
-            <div class="timeline-item"><strong>The Beginning:</strong> Hard work & Big Dreams.</div>
-            <div class="timeline-item"><strong>The Struggle:</strong> Sleepless nights & Mocks.</div>
-            <div class="timeline-item"><strong>The Result:</strong> RRB Clerk Selected! 🏆</div>
+            <div class="timeline-item"><strong>Preparation:</strong> The Journey of Hard Work.</div>
+            <div class="timeline-item"><strong>Persistence:</strong> Sleepless nights & Mocks.</div>
+            <div class="timeline-item" style="color: var(--gold);"><strong>Success:</strong> RRB Clerk Selected! 🏆</div>
         </div>
 
-        <div class="card" style="font-style: italic;">
-            "Your success is the result of your consistency. So proud of you!" ❤️
+        <div class="btn-group">
+            <button class="btn" onclick="megaCelebration()">SURPRISE! 🎆</button>
+            <button class="btn" style="background: white;" onclick="showCert()">VIEW CERTIFICATE 📜</button>
         </div>
+        
+        <p id="party-msg"></p>
+    </div>
 
-        <button class="btn" onclick="megaCelebration()">CLICK FOR SURPRISE! 🎆</button>
-        <p id="party-msg">Ab jaldi se Party do! 😄🍕</p>
+    <div id="cert-modal">
+        <h3 style="font-family: 'Dancing Script'; font-size: 2rem; color: var(--blue);">Official Achievement</h3>
+        <hr>
+        <p>This certifies that</p>
+        <h2 id="cert-name" style="color: #b21f1f; text-transform: uppercase;">Didi</h2>
+        <p>has successfully cleared the</p>
+        <h3 style="color: var(--blue);">RRB CLERK EXAMINATION 2026</h3>
+        <p>with flying colors!</p>
+        <button class="btn" onclick="closeCert()">Close</button>
     </div>
 
     <script>
-        function startConfetti() {
+        const name = "Didi"; // Yahan Didi ka real name likh sakte ho
+
+        function initPage() {
+            document.getElementById('main-title').innerText = `Congratulations ${name}! 🎉`;
+            document.getElementById('cert-name').innerText = name;
             confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            
+            // Progress Bar Fill
+            setTimeout(() => {
+                document.getElementById('myBar').style.width = "100%";
+            }, 500);
         }
 
         function megaCelebration() {
-            document.getElementById('party-msg').style.display = 'block';
-            
-            // 1. SOLITAIRE STYLE ROCKET FIREWORKS
-            var duration = 15 * 1000;
-            var animationEnd = Date.now() + duration;
+            // Sound Effect (Optional)
+            let audio = new Audio("https://www.soundjay.com/human/applause-8.mp3");
+            audio.play().catch(e => console.log("Audio needs interaction"));
 
+            // Dynamic Fun Messages
+            const funMsgs = [
+                "Party kab de rahi ho? 😄",
+                "Ab treat banti hai 😎",
+                "Banker ho gayi ho, ab toh rich ho 😂",
+                "Next Goal Loading... 🚀"
+            ];
+            const msgElement = document.getElementById('party-msg');
+            msgElement.style.display = 'block';
+            msgElement.innerText = funMsgs[Math.floor(Math.random() * funMsgs.length)];
+
+            // Solitaire Style Rockets
+            var duration = 10 * 1000;
+            var animationEnd = Date.now() + duration;
             var interval = setInterval(function() {
                 var timeLeft = animationEnd - Date.now();
                 if (timeLeft <= 0) return clearInterval(interval);
-
-                // Launching 3 rockets at a time from different bottom positions
-                launchRocket(0.2);
-                launchRocket(0.5);
-                launchRocket(0.8);
+                launchRocket(Math.random());
             }, 800);
 
-            // 2. FLOATING HEART PHOTOS
+            // Floating Heart Photos
             for (let i = 1; i <= 20; i++) {
                 setTimeout(() => { createHeartPhoto(i); }, i * 400); 
             }
         }
 
         function launchRocket(xPos) {
-            // Rocket burst effect using confetti library to mimic fireworks
-            confetti({
-                particleCount: 80,
-                angle: 90,
-                spread: 50,
-                origin: { x: xPos, y: 0.9 }, // Starts from bottom
-                startVelocity: 45, // Shoots up like a rocket
-                gravity: 1.2,
-                drift: 0,
-                ticks: 200,
-                colors: ['#ff0000', '#ffd700', '#ffffff', '#ff69b4', '#00ff00']
-            });
+            confetti({ particleCount: 80, angle: 90, spread: 50, origin: { x: xPos, y: 0.9 }, startVelocity: 45, gravity: 1.2, colors: ['#ff0000', '#ffd700', '#ffffff'] });
         }
 
         function createHeartPhoto(index) {
@@ -116,11 +149,20 @@
             img.src = `p${index}.jpeg`; 
             img.className = 'floating-photo';
             img.style.left = (Math.random() * 80 + 5) + 'vw';
-            const size = Math.random() * 40 + 90; 
-            img.style.width = size + 'px';
-            img.style.height = (size + 10) + 'px';
+            const size = Math.random() * 40 + 80; 
+            img.style.width = size + 'px'; img.style.height = (size + 10) + 'px';
             document.body.appendChild(img);
             setTimeout(() => { img.remove(); }, 6000);
+        }
+
+        function showCert() {
+            document.getElementById('cert-modal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeCert() {
+            document.getElementById('cert-modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
         }
     </script>
 </body>
